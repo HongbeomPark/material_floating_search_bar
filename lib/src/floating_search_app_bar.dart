@@ -256,7 +256,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
   set isOpen(bool value) {
     if (value) {
       post(transitionDuration, focus);
-      controller.forward();
+      // controller.forward();
     } else {
       unfocus();
 
@@ -392,7 +392,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
     final hasEndActions = hasActions(actions);
 
     final isDefaultPadding = style.padding.horizontal == 24.0;
-    final inset = isDefaultPadding ? 4.0 : 0.0;
+    final inset = isDefaultPadding ? 0.0 : 0.0;
 
     insets = EdgeInsets.lerp(
       style.insets.copyWith(
@@ -490,10 +490,12 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
         color: backgroundColor,
         elevation: elevation,
         child: Container(
-          height: style.height + statusBarHeight,
-          padding: style.padding.add(EdgeInsets.only(top: statusBarHeight)),
+            // color: Colors.red,
+            // height: style.height + statusBarHeight,
+            // padding: style.padding.add(EdgeInsets.only(top: statusBarHeight)),
+            child: Center(
           child: _buildInputAndActions(),
-        ),
+        )),
       ),
     );
 
@@ -575,7 +577,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
     final opacity = showTitle ? animation.value : 1.0;
 
     final showTextInput =
-        showTitle ? controller.value > 0.5 : controller.value > 0.0;
+        showTitle ? controller.value > 0.0 : controller.value > 0.0;
 
     Widget input;
     if (showTextInput) {

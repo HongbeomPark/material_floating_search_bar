@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
-
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:provider/provider.dart';
 
 import 'place.dart';
 import 'search_model.dart';
@@ -64,6 +62,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          title: Text(
+            'Search',
+            textAlign: TextAlign.start,
+            style: TextStyle(color: Colors.black),
+          )),
       drawer: Drawer(
         child: Container(
           width: 200,
@@ -87,17 +93,19 @@ class _HomeState extends State<Home> {
       ),
     ];
 
-    final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Consumer<SearchModel>(
       builder: (context, model, _) => FloatingSearchBar(
         automaticallyImplyBackButton: false,
         controller: controller,
+        height: 40,
         clearQueryOnClose: true,
-        hint: 'חיפוש...',
+        hint: 'search me...',
         iconColor: Colors.grey,
         transitionDuration: const Duration(milliseconds: 800),
-        transitionCurve: Curves.easeInOutCubic,
+        transitionCurve: Curves.easeIn,
         physics: const BouncingScrollPhysics(),
         axisAlignment: isPortrait ? 0.0 : -1.0,
         openAxisAlignment: 0.0,
@@ -107,7 +115,7 @@ class _HomeState extends State<Home> {
         debounceDelay: const Duration(milliseconds: 500),
         onQueryChanged: model.onQueryChanged,
         scrollPadding: EdgeInsets.zero,
-        transition: ExpandingFloatingSearchBarTransition(),
+        transition: SlideFadeFloatingSearchBarTransition(),
         builder: (context, _) => buildExpandableBody(model),
         body: buildBody(),
       ),
@@ -127,7 +135,7 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        buildBottomNavigationBar(),
+        // buildBottomNavigationBar(),
       ],
     );
   }
@@ -202,7 +210,8 @@ class _HomeState extends State<Home> {
                       const SizedBox(height: 2),
                       Text(
                         place.level2Address,
-                        style: textTheme.bodyText2.copyWith(color: Colors.grey.shade600),
+                        style: textTheme.bodyText2
+                            .copyWith(color: Colors.grey.shade600),
                       ),
                     ],
                   ),
@@ -217,42 +226,42 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      onTap: (value) => index = value,
-      currentIndex: index,
-      elevation: 16,
-      type: BottomNavigationBarType.fixed,
-      showUnselectedLabels: true,
-      backgroundColor: Colors.white,
-      selectedItemColor: Colors.blue,
-      selectedFontSize: 11.5,
-      unselectedFontSize: 11.5,
-      unselectedItemColor: const Color(0xFF4d4d4d),
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(MdiIcons.homeVariantOutline),
-          label: 'Explore',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(MdiIcons.homeCityOutline),
-          label: 'Commute',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(MdiIcons.bookmarkOutline),
-          label: 'Saved',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(MdiIcons.plusCircleOutline),
-          label: 'Contribute',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(MdiIcons.bellOutline),
-          label: 'Updates',
-        ),
-      ],
-    );
-  }
+  // Widget buildBottomNavigationBar() {
+  //   return BottomNavigationBar(
+  //     onTap: (value) => index = value,
+  //     currentIndex: index,
+  //     elevation: 16,
+  //     type: BottomNavigationBarType.fixed,
+  //     showUnselectedLabels: true,
+  //     backgroundColor: Colors.white,
+  //     selectedItemColor: Colors.blue,
+  //     selectedFontSize: 11.5,
+  //     unselectedFontSize: 11.5,
+  //     unselectedItemColor: const Color(0xFF4d4d4d),
+  //     items: const [
+  //       BottomNavigationBarItem(
+  //         icon: Icon(MdiIcons.homeVariantOutline),
+  //         title: 'Explore',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Icon(MdiIcons.homeCityOutline),
+  //         label: 'Commute',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Icon(MdiIcons.bookmarkOutline),
+  //         label: 'Saved',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Icon(MdiIcons.plusCircleOutline),
+  //         label: 'Contribute',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Icon(MdiIcons.bellOutline),
+  //         label: 'Updates',
+  //       ),
+  //     ],
+  //   );
+  // }
 
   @override
   void dispose() {
