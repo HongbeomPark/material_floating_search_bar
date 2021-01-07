@@ -692,19 +692,27 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
 
     if (isInside) return bar;
 
-    return AnimatedAlign(
-      duration: isAnimating ? duration : Duration.zero,
-      curve: widget.transitionCurve,
-      alignment: Alignment(isOpen ? openAxisAlignment : axisAlignment, 0.0),
-      child: Column(
-        children: <Widget>[
-          bar,
-          Expanded(
-            child: _buildBody(),
-          ),
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        bar,
+        Expanded(
+          child: _buildBody(),
+        ),
+      ],
     );
+    // return AnimatedAlign(
+    //   duration: isAnimating ? duration : Duration.zero,
+    //   curve: widget.transitionCurve,
+    //   alignment: Alignment(isOpen ? openAxisAlignment : axisAlignment, 0.0),
+    //   child: Column(
+    //     children: <Widget>[
+    //       bar,
+    //       Expanded(
+    //         child: _buildBody(),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   Widget _buildInnerBar() {
