@@ -813,7 +813,7 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
                     transition.lerpMargin().horizontal,
               )
             : null,
-        child: widget.builder(context, animation),
+        child: body,
       ),
     );
   }

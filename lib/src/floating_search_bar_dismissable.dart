@@ -20,7 +20,7 @@ class FloatingSearchBarDismissable extends StatefulWidget {
   final Widget child;
 
   /// The amount of space by which to inset the child.
-  final EdgeInsets padding;
+  // final EdgeInsets padding;
 
   /// An object that can be used to control the position to which this scroll
   /// view is scrolled.
@@ -47,7 +47,7 @@ class FloatingSearchBarDismissable extends StatefulWidget {
   const FloatingSearchBarDismissable({
     Key key,
     @required this.child,
-    this.padding,
+    // this.padding,
     this.controller,
     this.physics,
   })  : assert(child != null),
@@ -82,16 +82,16 @@ class _FloatingSearchBarDismissableState<E>
       onPanDown: (details) => tapDy = details.localPosition.dy,
       onPanUpdate: (details) => tapDy = details.localPosition.dy,
       onTap: () {
-        final padding = widget.padding;
-        final offset = max(scrollOffset - padding.top, 0.0);
+        // final padding = widget.padding;
+        // final offset = max(scrollOffset - padding.top, 0.0);
 
-        void close() => FloatingSearchBar.of(context).close();
+        // void close() => FloatingSearchBar.of(context).close();
 
-        if (tapDy < padding.top) {
-          close();
-        } else if (tapDy > (childHeight - offset)) {
-          close();
-        }
+        // if (tapDy < padding.top) {
+        //   close();
+        // } else if (tapDy > (childHeight - offset)) {
+        //   close();
+        // }
       },
       child: NotificationListener<ScrollNotification>(
         onNotification: (notification) {
