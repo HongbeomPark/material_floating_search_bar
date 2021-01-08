@@ -609,7 +609,7 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
             builder: (context, _) {
               return Stack(
                 children: <Widget>[
-                  // _buildBackdrop(),
+                  _buildBackdrop(),
                   _buildSearchBar(),
                 ],
               );
@@ -813,7 +813,7 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
                     transition.lerpMargin().horizontal,
               )
             : null,
-        child: body,
+        child: widget.builder(context, animation),
       ),
     );
   }
