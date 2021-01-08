@@ -103,23 +103,14 @@ class _FloatingSearchBarDismissableState<E>
 
           return false;
         },
-        child: SingleChildScrollView(
-          controller: widget.controller,
-          physics: widget.physics,
-          padding: widget.padding.add(
-            EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-          ),
-          child: NotificationListener<SizeChangedLayoutNotification>(
-            onNotification: (_) {
-              _measure();
-              return true;
-            },
-            child: SizeChangedLayoutNotifier(
-              key: childKey,
-              child: widget.child,
-            ),
+        child: NotificationListener<SizeChangedLayoutNotification>(
+          onNotification: (_) {
+            _measure();
+            return true;
+          },
+          child: SizeChangedLayoutNotifier(
+            key: childKey,
+            child: widget.child,
           ),
         ),
       ),

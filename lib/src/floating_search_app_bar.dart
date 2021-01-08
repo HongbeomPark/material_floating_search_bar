@@ -309,10 +309,8 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
         }
       });
 
-    transitionAnimation = CurvedAnimation(
-      parent: controller,
-      curve: widget.transitionCurve,
-    );
+    transitionAnimation =
+        CurvedAnimation(parent: controller, curve: widget.transitionCurve);
 
     scrollController = AnimationController(
       vsync: this,
