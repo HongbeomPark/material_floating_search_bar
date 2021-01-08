@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
       builder: (context, model, _) => FloatingSearchBar(
         automaticallyImplyBackButton: false,
         controller: controller,
-        height: 40,
+        height: 36,
         clearQueryOnClose: true,
         hint: 'search me...',
         iconColor: Colors.grey,

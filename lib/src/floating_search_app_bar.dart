@@ -595,7 +595,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
           decoration: InputDecoration(
             hintText: widget.hint,
             hintStyle: style.hintStyle,
-            contentPadding: EdgeInsets.only(bottom: 7.5),
+            contentPadding: EdgeInsets.only(bottom: 10.5),
             border: InputBorder.none,
             errorBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
