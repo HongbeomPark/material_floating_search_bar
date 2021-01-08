@@ -798,7 +798,7 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
     final body = transition.buildTransition(
       FloatingSearchBarDismissable(
         controller: _scrollController,
-        padding: widget.scrollPadding,
+        // padding: widget.scrollPadding,
         physics: widget.physics,
         child: widget.builder(context, animation),
       ),
