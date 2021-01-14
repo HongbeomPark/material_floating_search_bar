@@ -113,6 +113,7 @@ class _HomeState extends State<Home> {
         actions: actions,
         progress: model.isLoading,
         debounceDelay: const Duration(milliseconds: 500),
+        queryStyle: TextStyle(fontSize: 17),
         onQueryChanged: model.onQueryChanged,
         scrollPadding: EdgeInsets.zero,
         transition: SlideFadeFloatingSearchBarTransition(),
