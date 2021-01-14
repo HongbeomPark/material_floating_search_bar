@@ -57,7 +57,7 @@ class FloatingSearchBarAction extends StatelessWidget {
   ///
   /// When the [FloatingSearchBar] opens, the hamburger
   /// transitions into a back button.
-  factory FloatingSearchBarAction.hamburgerToBack({
+  factory FloatingSearchBarAction.searchToBack({
     double size = 24,
     Color color,
     bool isLeading = true,
@@ -68,6 +68,7 @@ class FloatingSearchBarAction extends StatelessWidget {
         final isLTR = Directionality.of(context) == TextDirection.ltr;
 
         return CircularButton(
+          padding: EdgeInsets.zero,
           onPressed: () {
             final bar = FloatingSearchAppBar.of(context);
             if (bar?.isOpen == true) {
@@ -218,6 +219,8 @@ class FloatingSearchActionBar extends StatelessWidget {
       builder: (context, child) => IconTheme(
         data: iconTheme,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: _mapActions(),
         ),
       ),

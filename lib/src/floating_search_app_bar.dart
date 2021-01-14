@@ -227,7 +227,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
     return showHamburger
         ? <Widget>[
             ...actions,
-            FloatingSearchBarAction.hamburgerToBack(isLeading: false)
+            FloatingSearchBarAction.searchToBack(isLeading: false)
           ]
         : actions;
   }
@@ -240,7 +240,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
 
     Widget leading;
     if (showHamburger) {
-      leading = FloatingSearchBarAction.hamburgerToBack();
+      leading = FloatingSearchBarAction.searchToBack();
     } else if (widget.automaticallyImplyBackButton &&
         (Navigator.canPop(context) || widget.body != null)) {
       leading = FloatingSearchBarAction.back(
@@ -457,7 +457,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: height),
+              padding: EdgeInsets.only(top: height, left: 0),
               child: widget.body,
             ),
             _buildBar(),
@@ -489,8 +489,10 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
         elevation: elevation,
         child: Container(
           height: style.height + statusBarHeight,
-          padding: style.padding.add(EdgeInsets.only(top: statusBarHeight)),
-          child: _buildInputAndActions(),
+          // padding: style.padding.add(EdgeInsets.only(top: statusBarHeight)),
+          child: Center(
+            child: _buildInputAndActions(),
+          ),
         ),
       ),
     );
@@ -519,6 +521,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
         Theme.of(context).iconTheme.copyWith(color: style.iconColor);
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         FloatingSearchActionBar(
           animation: transitionAnimation,
@@ -530,8 +533,8 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
             alignment: AlignmentDirectional.centerStart,
             children: <Widget>[
               _buildInputField(),
-              buildGradient(isLeft: true),
-              buildGradient(isLeft: false),
+              // buildGradient(isLeft: true),
+              // buildGradient(isLeft: false),
             ],
           ),
         ),
@@ -585,6 +588,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
           focusNode: _input.node,
           maxLines: 1,
           autofocus: false,
+          textAlignVertical: TextAlignVertical.center,
           autocorrect: widget.autocorrect,
           toolbarOptions: widget.toolbarOptions,
           cursorColor: style.accentColor,
@@ -595,7 +599,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
           decoration: InputDecoration(
             hintText: widget.hint,
             hintStyle: style.hintStyle,
-            contentPadding: EdgeInsets.only(bottom: 10.5),
+            contentPadding: EdgeInsets.only(bottom: 14, left: 0, right: 0),
             border: InputBorder.none,
             errorBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
@@ -638,7 +642,7 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
     return NotificationListener<ScrollNotification>(
       onNotification: (_) => true,
       child: SingleChildScrollView(
-        padding: insets,
+        padding: EdgeInsets.zero,
         scrollDirection: Axis.horizontal,
         child: Opacity(
           opacity: opacity,

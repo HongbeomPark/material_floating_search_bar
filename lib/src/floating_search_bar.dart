@@ -764,6 +764,7 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
           Material(
             elevation: transition.lerpInnerElevation(),
             shadowColor: style.shadowColor,
+            color: Colors.red,
             child: Container(
               height: height,
               color: transition.lerpBackgroundColor(),
@@ -777,8 +778,7 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
                             maxWidth: transition.lerpInnerMaxWidth(),
                           )
                         : null,
-                    padding: EdgeInsets.only(
-                        left: padding.left, right: padding.right),
+                    padding: EdgeInsets.only(left: 0, right: padding.right),
                     child: textField,
                   ),
                   Align(
@@ -874,7 +874,7 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
       borderRadius: widget.borderRadius ?? BorderRadius.circular(4),
       margins: widget.margins ??
           EdgeInsets.fromLTRB(
-                  8, MediaQuery.of(context).viewPadding.top + 6, 8, 0)
+                  0, MediaQuery.of(context).viewPadding.top + 6, 0, 0)
               .resolve(direction),
       padding: widget.padding,
       insets: widget.insets,
