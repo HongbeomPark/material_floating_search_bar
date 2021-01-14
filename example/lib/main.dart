@@ -141,28 +141,31 @@ class _HomeState extends State<Home> {
   }
 
   Widget buildExpandableBody(SearchModel model) {
-    return Material(
-      color: Colors.white,
-      elevation: 4.0,
-      borderRadius: BorderRadius.circular(8),
-      child: ImplicitlyAnimatedList<Place>(
-        shrinkWrap: true,
-        padding: EdgeInsets.zero,
-        physics: const NeverScrollableScrollPhysics(),
-        items: model.suggestions.take(6).toList(),
-        areItemsTheSame: (a, b) => a == b,
-        itemBuilder: (context, animation, place, i) {
-          return SizeFadeTransition(
-            animation: animation,
-            child: buildItem(context, place),
-          );
-        },
-        updateItemBuilder: (context, animation, place) {
-          return FadeTransition(
-            opacity: animation,
-            child: buildItem(context, place),
-          );
-        },
+    return Padding(
+      padding: const EdgeInsets.all(30.0),
+      child: Material(
+        color: Colors.white,
+        elevation: 4.0,
+        borderRadius: BorderRadius.circular(8),
+        child: ImplicitlyAnimatedList<Place>(
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          physics: const NeverScrollableScrollPhysics(),
+          items: model.suggestions.take(6).toList(),
+          areItemsTheSame: (a, b) => a == b,
+          itemBuilder: (context, animation, place, i) {
+            return SizeFadeTransition(
+              animation: animation,
+              child: buildItem(context, place),
+            );
+          },
+          updateItemBuilder: (context, animation, place) {
+            return FadeTransition(
+              opacity: animation,
+              child: buildItem(context, place),
+            );
+          },
+        ),
       ),
     );
   }
